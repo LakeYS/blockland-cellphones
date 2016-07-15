@@ -26,7 +26,7 @@ package CellPhone
 				switch$(%text)
 				{
 					case 0:
-						messageAll('', '\c6Your Call Has Been dismissed.');
+						messageClient(%client,'', '\c6Your Call Has Been dismissed.');
 						%client.emergency = 0;
 					case 1:
 						messageAll('', '\c3%1 \c6has reported a \c3murder/injury \c6at their location. (\c3%2\c6)', %client.name, %client.player.getTransform());
