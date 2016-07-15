@@ -101,6 +101,13 @@ function servercmdcall(%client, %number, %override)
 		// End Call
 		if(strlwr(%number) $= "end")
 		{
+			if(%client.emergency)
+			{
+				messageClient(%client, '', '\c3Call Ended');
+				%client.emergency = 0;
+				return;
+			}
+			
 			if(%client.bl_idcalling !$= "")
 			{
 				%target = findclientbybl_id(%client.bl_idcalling);

@@ -26,7 +26,6 @@ package CellPhone
 				switch$(%text)
 				{
 					case 0:
-						messageClient(%client,'', '\c6Your Call Has Been dismissed.');
 						%client.emergency = 0;
 					case 1:
 						messageAll('', '\c3%1 \c6has reported a \c3murder/injury \c6at their location. (\c3%2\c6)', %client.name, %client.player.getTransform());
@@ -38,13 +37,8 @@ package CellPhone
 						for(%cl=0;%cl<ClientGroup.getCount();%cl++)
 						{
 							%target = ClientGroup.getObject(%cl);
-							if(isObject(%target))
-							{
-								if(%target.isAdmin)
-								{
-									messageClient(%target, '', '\c3%1\c6, Reported a rule being broken at his/her location.');
-								}
-							}
+							if(isObject(%target) && %target.isAdmin)
+								messageClient(%target, '', '\c3' @ %client.name @ '\c6, Reported a rule being broken at his/her location.');
 						}
 						%client.emergency = 0;
 					case 4:
